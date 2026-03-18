@@ -1,0 +1,41 @@
+﻿@model IEnumerable<AplicacionesWeb.Models.CuentaBancaria>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Listado de Cuentas Bancarias</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Crear Cuenta Bancaria</a>
+</p>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroCuenta)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Saldo)
+            </th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.NumeroCuenta</td>
+                <td>@item.Saldo.ToString("N2")</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Editar</a>
+                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Detalles</a>
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Eliminar</a>
+                    <a asp-action="SaldoDisponible" asp-route-id="@item.Id" class="btn btn-success btn-sm">Saldo Disponible</a>
+                    <a asp-action="Retirar" asp-route-id="@item.Id" class="btn btn-dark btn-sm">Retirar</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

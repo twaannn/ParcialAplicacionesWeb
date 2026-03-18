@@ -1,0 +1,32 @@
+﻿@model AplicacionesWeb.Models.CuentaBancaria
+
+@{
+    ViewData["Title"] = "Saldo Disponible";
+}
+
+<h1>Saldo Disponible</h1>
+
+<div>
+    <h4>Cuenta Bancaria</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            Número de Cuenta
+        </dt>
+        <dd class="col-sm-10">
+            @Model.NumeroCuenta
+        </dd>
+
+        <dt class="col-sm-2">
+            Saldo Disponible
+        </dt>
+        <dd class="col-sm-10">
+            @ViewBag.SaldoDisponible.ToString("N2")
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Retirar" asp-route-id="@Model.Id" class="btn btn-warning">Retirar</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+</div>

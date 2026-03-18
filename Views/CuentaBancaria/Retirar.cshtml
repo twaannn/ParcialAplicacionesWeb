@@ -1,0 +1,51 @@
+﻿@model AplicacionesWeb.Models.CuentaBancaria
+
+@{
+    ViewData["Title"] = "Retirar";
+}
+
+<h1>Retirar Dinero</h1>
+
+<h4>Cuenta Bancaria</h4>
+<hr />
+
+<div class="row">
+    <div class="col-md-4">
+        <dl class="row">
+            <dt class="col-sm-5">
+                Número de Cuenta
+            </dt>
+            <dd class="col-sm-7">
+                @Model.NumeroCuenta
+            </dd>
+
+            <dt class="col-sm-5">
+                Saldo Actual
+            </dt>
+            <dd class="col-sm-7">
+                @Model.Saldo.ToString("N2")
+            </dd>
+        </dl>
+
+        @if (ViewBag.Mensaje != null)
+        {
+            <div class="alert alert-danger">
+                @ViewBag.Mensaje
+            </div>
+        }
+
+        <form asp-action="Retirar" asp-route-id="@Model.Id" method="post">
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <label for="cantidad" class="control-label">Cantidad a retirar</label>
+                <input type="number" name="cantidad" class="form-control" step="0.01" min="0.01" required />
+            </div>
+
+            <div class="form-group mt-2">
+                <button type="submit" class="btn btn-danger">Retirar</button>
+                <a asp-action="SaldoDisponible" asp-route-id="@Model.Id" class="btn btn-secondary">Ver saldo</a>
+            </div>
+        </form>
+    </div>
+</div>
